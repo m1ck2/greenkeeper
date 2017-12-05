@@ -8,7 +8,8 @@ const statsd = require('../../../lib/statsd')
 const { createDocs } = require('../../../lib/repository-docs')
 
 module.exports = async function ({ installation, repositories_added }) {
-  const { repositories: reposDb, logs } = await dbs()
+  const { repositories: reposDb } = await dbs()
+  const logs = dbs.getLogsDb()
   const log = Log({
     logsDb: logs,
     accountId: installation.account.id,

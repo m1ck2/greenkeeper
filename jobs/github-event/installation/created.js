@@ -9,7 +9,8 @@ const statsd = require('../../../lib/statsd')
 const upsert = require('../../../lib/upsert')
 
 module.exports = async function ({ installation }) {
-  const { installations, repositories: reposDb, logs } = await dbs()
+  const { installations, repositories: reposDb } = await dbs()
+  const logs = dbs.getLogsDb()
   const log = Log({
     logsDb: logs,
     accountId: installation.account.id,
